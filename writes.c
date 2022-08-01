@@ -6,17 +6,14 @@
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:04:38 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/01 17:05:00 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/01 17:10:36 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar_count(va_list ptr, size_t *wrt)
+void	ft_putchar_count(int c, size_t *wrt)
 {
-	int	c;
-
-	c = va_arg(ptr, int);
 	*wrt += write(1, &c, 1);
 }
 
@@ -61,6 +58,8 @@ void	ft_putnbr_unsigned_count(unsigned int n, size_t *wrt)
 
 void	ft_putstr_count(char *s, size_t *wrt)
 {
+	ft_strlen(s);
+	write(1, "aa", 2);
 	if (s)
 		*wrt += write(1, s, ft_strlen(s));
 }

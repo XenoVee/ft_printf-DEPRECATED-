@@ -6,7 +6,7 @@
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 14:43:03 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/01 17:06:09 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/01 17:10:31 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	varread(const char *content, size_t len, size_t *wrt, va_list ptr)
 	{
 		len++;
 		if (content[len] == 'c')
-			ft_putstr_count(va_arg(ptr, char *), wrt);
+			ft_putchar_count(va_arg(ptr, int), wrt);
 		else if (content[len] == 's')
 			ft_putstr_count(va_arg(ptr, char *), wrt);
 		else if (content[len] == 'p')
