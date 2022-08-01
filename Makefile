@@ -1,4 +1,4 @@
-SOURCES = 
+SOURCES = ft_printf.c ft_printf_utils.c writes.c
 OBJECTS = $(SOURCES:.c=.o)
 HEADER = ft_printf.h
 CFLAGS = -Wall -Wextra -Werror -g
@@ -10,7 +10,7 @@ SOURCES_TEST = main.c
 all: $(NAME)
 
 $(TEST): $(NAME) $(SOURCES_TEST)
-	$(CC) -o $@ $^ 
+	$(CC) -o $@ $^ -g
 	make clean
 
 $(NAME): $(OBJECTS) $(HEADER)
