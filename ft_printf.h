@@ -6,7 +6,7 @@
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 14:30:55 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/01 17:10:51 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/02 17:05:00 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	ft_putstr_count(char *s, size_t *wrt);
 void	ft_putnbr_unsigned_count(unsigned int n, size_t *wrt);
 size_t	ft_strlen(const char *s);
 void	ft_putchar_count(int c, size_t *wrt);
+void	ft_puthexadecimal_count(unsigned int x, int cap, size_t *wrt);
 
 #endif

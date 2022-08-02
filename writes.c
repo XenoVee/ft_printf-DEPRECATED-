@@ -6,11 +6,38 @@
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:04:38 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/01 17:10:36 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/02 17:08:27 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	ft_puthexadecimal_count(unsigned int x, int cap, size_t *wrt)
+{
+	if (x < 0)
+	{
+		*wrt += write (1, "-", 1);
+		ft_puthexadecimal_count (-x, cap, wrt);
+		return ;
+	}
+	else if (x > 0x10 - 1)
+	{
+		ft_puthexadecimal_count(x / 0x10, cap, wrt);
+		ft_puthexadecimal_count(x % 0x10, cap, wrt);
+	}
+	else if (x > 0x10 - 1)
+		return ;
+	if (x < 0xA)
+	{
+		x = x + 48;
+		*wrt += write (1, &x, 1);
+	}
+	else if (x >= 0xA && x <= 0xF)
+	{
+		x = 87 + x - cap;
+		*wrt += write (1, &x, 1);
+	}
+}
 
 void	ft_putchar_count(int c, size_t *wrt)
 {
@@ -58,8 +85,6 @@ void	ft_putnbr_unsigned_count(unsigned int n, size_t *wrt)
 
 void	ft_putstr_count(char *s, size_t *wrt)
 {
-	ft_strlen(s);
-	write(1, "aa", 2);
 	if (s)
 		*wrt += write(1, s, ft_strlen(s));
 }

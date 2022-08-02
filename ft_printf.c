@@ -6,7 +6,7 @@
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 14:43:03 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/01 17:10:31 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/02 17:04:51 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,24 @@
 #include <errno.h>
 #include <string.h>
 
-static int	varread2(const char *content, size_t len, size_t *wrt, va_list ptr)
+static void	varread2(const char *content, size_t len, size_t *wrt, va_list ptr)
 {
 	if (content[len] == 'u')
 		ft_putnbr_unsigned_count(va_arg(ptr, unsigned int), wrt);
 	else if (content[len] == 'x')
-		write(1, "not yet", 7);
+		ft_puthexadecimal_count((va_arg(ptr, int)), 0, wrt);
 	else if (content[len] == 'X')
-		write(1, "not yet", 7);
+		ft_puthexadecimal_count((va_arg(ptr, int)), 32, wrt);
 	else if (content[len] == '%')
 		*wrt += write(1, "%", 1);
-	else
-	{
-		*wrt += write(1, "%", 1);
-		return (-1);
-	}
-	return (len);
 }
 
 static int	varread(const char *content, size_t len, size_t *wrt, va_list ptr)
 {
-	if (content[len] == '%')
+	size_t	buf;
+
+	buf = *wrt;
+	while (buf == *wrt)
 	{
 		len++;
 		if (content[len] == 'c')
@@ -47,8 +44,8 @@ static int	varread(const char *content, size_t len, size_t *wrt, va_list ptr)
 			ft_putnbr_count(va_arg(ptr, int), wrt);
 		else if (content[len] == 'i')
 			ft_putnbr_count(va_arg(ptr, int), wrt);
-		else if (varread2(content, len, wrt, ptr) == -1)
-			return (len);
+		else
+			varread2(content, len, wrt, ptr);
 	}
 	return (len + 1);
 }
