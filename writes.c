@@ -6,7 +6,7 @@
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:04:38 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/02 17:08:27 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/02 17:09:31 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,12 @@ void	ft_puthexadecimal_count(unsigned int x, int cap, size_t *wrt)
 	}
 	else if (x > 0x10 - 1)
 		return ;
-	if (x < 0xA)
+	if (x <= 0xf)
 	{
-		x = x + 48;
-		*wrt += write (1, &x, 1);
-	}
-	else if (x >= 0xA && x <= 0xF)
-	{
-		x = 87 + x - cap;
+		if (x < 0xA)
+			x = x + 48;
+		else if (x >= 0xA)
+			x = 87 + x - cap;
 		*wrt += write (1, &x, 1);
 	}
 }
