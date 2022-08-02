@@ -10,20 +10,20 @@ SOURCES_TEST = main.c
 all: $(NAME)
 
 $(TEST): $(NAME) $(SOURCES_TEST)
-	$(CC) -o $@ $^ -g
-	make clean
+	@$(CC) -o $@ $^ -g
+	@make clean
 
 $(NAME): $(OBJECTS) $(HEADER)
-	ar -rcsu $@ $^
+	@ar -rcsu $@ $^
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) -o $@ $^
+	@$(CC) -c $(CFLAGS) -o $@ $^
 
 clean:
-	rm -f $(OBJECTS) $(BONUS_OBJECTS)
+	@rm -f $(OBJECTS) $(BONUS_OBJECTS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
