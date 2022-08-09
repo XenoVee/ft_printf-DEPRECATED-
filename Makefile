@@ -1,4 +1,4 @@
-SOURCES = ft_printf.c ft_printf_utils.c writes.c writes2.c
+SOURCES = ft_printf.c ft_printf_utils.c writes.c writes_pointer.c
 OBJECTS = $(SOURCES:.c=.o)
 HEADER = ft_printf.h
 CFLAGS = -Wall -Wextra -Werror -g
