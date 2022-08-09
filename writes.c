@@ -6,17 +6,11 @@
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:04:38 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/02 18:13:14 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/09 18:51:12 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void	ft_putpointer_count(void *ptr, size_t *wrt)
-{
-	//*wrt += write(1, "0x7ffe", 6);
-	ft_puthexadecimal_count((unsigned int)ptr, 0, wrt);
-}
 
 void	ft_puthexadecimal_count(unsigned int x, int cap, size_t *wrt)
 {
@@ -76,6 +70,11 @@ void	ft_putnbr_unsigned_count(unsigned int n, size_t *wrt)
 
 void	ft_putstr_count(char *s, size_t *wrt)
 {
+	if (!s)
+	{
+		*wrt += write(1, "(null)", 6);
+		return ;
+	}
 	if (s)
 		*wrt += write(1, s, ft_strlen(s));
 }
