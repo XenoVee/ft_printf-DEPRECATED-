@@ -6,7 +6,7 @@
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 14:43:03 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/02 17:04:51 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/02 17:24:25 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	varread2(const char *content, size_t len, size_t *wrt, va_list ptr)
 	else if (content[len] == 'x')
 		ft_puthexadecimal_count((va_arg(ptr, int)), 0, wrt);
 	else if (content[len] == 'X')
-		ft_puthexadecimal_count((va_arg(ptr, int)), 32, wrt);
+		ft_puthexadecimal_count((va_arg(ptr, int)), 1, wrt);
 	else if (content[len] == '%')
 		*wrt += write(1, "%", 1);
 }
@@ -39,7 +39,7 @@ static int	varread(const char *content, size_t len, size_t *wrt, va_list ptr)
 		else if (content[len] == 's')
 			ft_putstr_count(va_arg(ptr, char *), wrt);
 		else if (content[len] == 'p')
-			write(1, "not yet", 7);
+			ft_putpointer_count(va_arg(ptr, void *), wrt);
 		else if (content[len] == 'd')
 			ft_putnbr_count(va_arg(ptr, int), wrt);
 		else if (content[len] == 'i')

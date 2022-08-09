@@ -6,40 +6,33 @@
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:04:38 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/02 17:09:31 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/02 18:13:14 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+void	ft_putpointer_count(void *ptr, size_t *wrt)
+{
+	//*wrt += write(1, "0x7ffe", 6);
+	ft_puthexadecimal_count((unsigned int)ptr, 0, wrt);
+}
+
 void	ft_puthexadecimal_count(unsigned int x, int cap, size_t *wrt)
 {
-	if (x < 0)
-	{
-		*wrt += write (1, "-", 1);
-		ft_puthexadecimal_count (-x, cap, wrt);
-		return ;
-	}
-	else if (x > 0x10 - 1)
+	if (x >= 0x10)
 	{
 		ft_puthexadecimal_count(x / 0x10, cap, wrt);
 		ft_puthexadecimal_count(x % 0x10, cap, wrt);
 	}
-	else if (x > 0x10 - 1)
-		return ;
-	if (x <= 0xf)
+	if (x < 0x10)
 	{
 		if (x < 0xA)
 			x = x + 48;
 		else if (x >= 0xA)
-			x = 87 + x - cap;
+			x = 87 + x - (32 * cap);
 		*wrt += write (1, &x, 1);
 	}
-}
-
-void	ft_putchar_count(int c, size_t *wrt)
-{
-	*wrt += write(1, &c, 1);
 }
 
 void	ft_putnbr_count(int n, size_t *wrt)
