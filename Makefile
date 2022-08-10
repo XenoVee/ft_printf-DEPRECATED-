@@ -3,7 +3,7 @@ OBJECTS = $(SOURCES:.c=.o)
 HEADER = ft_printf.h
 CFLAGS = -Wall -Wextra -Werror -g
 CC = gcc
-NAME = ft_printf.a
+NAME = libftprintf.a
 TEST = test
 SOURCES_TEST = main.c
 

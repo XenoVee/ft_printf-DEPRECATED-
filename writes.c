@@ -6,7 +6,7 @@
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:04:38 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/09 18:51:12 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/10 15:00:05 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ void	ft_putstr_count(char *s, size_t *wrt)
 		*wrt += write(1, "(null)", 6);
 		return ;
 	}
-	if (s)
-		*wrt += write(1, s, ft_strlen(s));
+	*wrt += write(1, s, ft_strlen(s));
 }
