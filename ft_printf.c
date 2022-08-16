@@ -6,7 +6,7 @@
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 14:43:03 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/16 15:47:38 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/16 16:05:58 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,23 @@ static void	varread2(const char *content, size_t len, size_t *wrt, va_list ptr)
 		ft_puthexadecimal_count((va_arg(ptr, int)), 1, wrt);
 	else if (content[len] == '%')
 		*wrt += write(1, "%", 1);
-	else if (content[len] == '\n')
-		*wrt += write(1, "\n", 1);
 }
 
 static int	varread(const char *content, size_t len, size_t *wrt, va_list ptr)
 {
-	size_t	buf;
-
-	buf = *wrt;
-	while (buf == *wrt)
-	{
-		len++;
-		if (content[len] == 'c')
-			ft_putchar_count(va_arg(ptr, int), wrt);
-		else if (content[len] == 's')
-			ft_putstr_count(va_arg(ptr, char *), wrt);
-		else if (content[len] == 'p')
-			ft_pointer_count(va_arg(ptr, unsigned long long), wrt);
-		else if (content[len] == 'd' || content[len] == 'i')
-			ft_putnbr_count(va_arg(ptr, int), wrt);
-		else if (content[len] == '\0')
-			return (-1);
-		else
-			varread2(content, len, wrt, ptr);
-	}
+	len++;
+	if (content[len] == 'c')
+		ft_putchar_count(va_arg(ptr, int), wrt);
+	else if (content[len] == 's')
+		ft_putstr_count(va_arg(ptr, char *), wrt);
+	else if (content[len] == 'p')
+		ft_pointer_count(va_arg(ptr, unsigned long long), wrt);
+	else if (content[len] == 'd' || content[len] == 'i')
+		ft_putnbr_count(va_arg(ptr, int), wrt);
+	else if (content[len] == '\0')
+		return (-1);
+	else
+		varread2(content, len, wrt, ptr);
 	return (len + 1);
 }
 

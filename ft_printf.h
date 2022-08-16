@@ -6,19 +6,15 @@
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 14:30:55 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/09 20:39:52 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/16 16:22:15 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdlib.h>
 # include <unistd.h>
-# include <stddef.h>
 # include <stdarg.h>
-# include <stdio.h>
-//DONT FORGOR TO REMOVE PLS
 
 int		ft_printf(const char *content, ...);
 int		ft_partlen(const char *s, size_t start);
