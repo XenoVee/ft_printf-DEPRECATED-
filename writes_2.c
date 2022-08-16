@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   writes2.c                                          :+:      :+:    :+:   */
+/*   writes_pointer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:04:38 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/09 18:54:30 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/16 15:49:08 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,14 @@ void	ft_pointer_count(unsigned long ptr, size_t *wrt)
 {
 		*wrt += write(1, "0x", 2);
 	ft_put_ptr_count(ptr, wrt);
+}
+
+void	ft_putlen(const char *s, size_t len, size_t start, size_t *wrt)
+{
+	*wrt += write(1, &s[start], len - start);
+}
+
+void	ft_putchar_count(int c, size_t *wrt)
+{
+	*wrt += write(1, &c, 1);
 }

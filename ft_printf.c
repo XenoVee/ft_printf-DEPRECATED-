@@ -6,7 +6,7 @@
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 14:43:03 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/10 15:03:21 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/16 15:47:38 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	varread2(const char *content, size_t len, size_t *wrt, va_list ptr)
 		ft_puthexadecimal_count((va_arg(ptr, int)), 1, wrt);
 	else if (content[len] == '%')
 		*wrt += write(1, "%", 1);
+	else if (content[len] == '\n')
+		*wrt += write(1, "\n", 1);
 }
 
 static int	varread(const char *content, size_t len, size_t *wrt, va_list ptr)
@@ -42,6 +44,8 @@ static int	varread(const char *content, size_t len, size_t *wrt, va_list ptr)
 			ft_pointer_count(va_arg(ptr, unsigned long long), wrt);
 		else if (content[len] == 'd' || content[len] == 'i')
 			ft_putnbr_count(va_arg(ptr, int), wrt);
+		else if (content[len] == '\0')
+			return (-1);
 		else
 			varread2(content, len, wrt, ptr);
 	}
@@ -51,7 +55,7 @@ static int	varread(const char *content, size_t len, size_t *wrt, va_list ptr)
 int	ft_printf(const char *content, ...)
 {
 	size_t	len;
-	size_t	start;
+	int		start;
 	size_t	wrt;
 	va_list	ptr;
 
@@ -66,6 +70,8 @@ int	ft_printf(const char *content, ...)
 		start = len;
 		if (content[len] == '%')
 			start = varread(content, len, &wrt, ptr);
+		if (start == -1)
+			return (wrt);
 	}
 	va_end(ptr);
 	return (wrt);

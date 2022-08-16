@@ -6,7 +6,7 @@
 /*   By: rmaes <rmaes@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 14:47:15 by rmaes             #+#    #+#             */
-/*   Updated: 2022/08/02 17:15:45 by rmaes            ###   ########.fr       */
+/*   Updated: 2022/08/16 15:49:19 by rmaes            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,4 @@ int	ft_partlen(const char *s, size_t start)
 	while (s[a] != '%' && s[a])
 		a++;
 	return (a);
-}
-
-void	ft_putlen(const char *s, size_t len, size_t start, size_t *wrt)
-{
-	*wrt += write(1, &s[start], len - start);
-}
-
-void	ft_putchar_count(int c, size_t *wrt)
-{
-	*wrt += write(1, &c, 1);
 }
